@@ -4,7 +4,7 @@ html {
 
 .app {
     height: 100vh;
-    background-color: white;
+    background-color: black;
     display: grid;
     place-items: center;
 }
@@ -12,7 +12,6 @@ html {
 .app__videos {
     position: relative;
     height: 100%;
-    max-width: 500px;
     overflow: scroll;
     scroll-snap-type: y mandatory;
 }

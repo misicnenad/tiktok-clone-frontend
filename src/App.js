@@ -35,14 +35,6 @@ function App() {
                     />
                 ))}
             </div>
-
-            {/* app container */}
-            {/* videos */}
-            {/* <Video /> */}
-            {/* <Video /> */}
-            {/* <Video /> */}
-            {/* <Video /> */}
-            {/* <Video /> */}
         </div>
     )
 }
