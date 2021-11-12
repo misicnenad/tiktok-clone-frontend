@@ -35,13 +35,17 @@
     padding-top: 7px;
 }
 
-.videoFooter__record {
-    animation: spinTheRecord infinite 5s linear;
+.videoFooter__record,
+.videoFooter__record-spinning {
     height: 50px;
     filter: invert(1);
     position: absolute;
     bottom: 0;
     right: 20px;
+}
+
+.videoFooter__record-spinning {
+    animation: spinTheRecord infinite 5s linear;
 }
 
 @keyframes spinTheRecord {
@@ -54,7 +58,8 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .videoFooter__record {
+    .videoFooter__record,
+    .videoFooter__record-spinning {
         height: 40px;
     }
 }

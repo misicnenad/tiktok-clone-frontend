@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import Video from './Video'
 import axios from './axios'
+import Video from './Video'
 
 function App() {
     const [videos, setVideos] = useState([])
+    const [muted, setMuted] = useState(true)
 
     useEffect(() => {
         async function fetchPosts() {
@@ -14,7 +15,7 @@ function App() {
         }
 
         fetchPosts()
-    }, [])
+    })
 
     return (
         // BEM naming convention
@@ -30,6 +31,8 @@ function App() {
                         likes={video.likes}
                         shares={video.shares}
                         messages={video.messages}
+                        muted={muted}
+                        handleToggleMuted={() => setMuted(!muted)}
                     />
                 ))}
             </div>

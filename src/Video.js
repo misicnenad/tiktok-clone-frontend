@@ -1,45 +1,54 @@
 import React, { useEffect, useRef, useState } from 'react'
-import VisibilitySensor from 'react-visibility-sensor'
 import './Video.css'
 import VideoFooter from './VideoFooter'
 import VideoSidebar from './VideoSidebar'
+import { useInView } from 'react-intersection-observer'
 
-function Video({ url, channel, description, song, likes, shares, messages }) {
+function Video(props) {
     const [isPlaying, setIsPlaying] = useState(true)
     const videoRef = useRef(null)
+
+    const { ref, inView } = useInView({
+        threshold: 1,
+    })
 
     const handleVideoPress = () => {
         setIsPlaying(!isPlaying)
     }
 
     useEffect(() => {
-        if (isPlaying) {
+        if (inView && isPlaying) {
             videoRef.current.play()
         } else {
             if (videoRef.current.play) {
                 videoRef.current.pause()
             }
         }
-    }, [isPlaying])
+    }, [isPlaying, inView])
 
     return (
-        <div className='video'>
-            <VisibilitySensor onChange={(isVisible) => setIsPlaying(isVisible)}>
-                <video
-                    onClick={handleVideoPress}
-                    className='video__player'
-                    loop
-                    ref={videoRef}
-                    src={url}
-                ></video>
-            </VisibilitySensor>
+        <div className='video' ref={ref}>
+            <video
+                onClick={handleVideoPress}
+                className='video__player'
+                loop
+                ref={videoRef}
+                src={props.url}
+                muted={props.muted}
+            ></video>
 
             <VideoFooter
-                channel={channel}
-                description={description}
-                song={song}
+                channel={props.channel}
+                description={props.description}
+                song={props.song}
+                muted={props.muted}
+                handleToggleMuted={() => props.handleToggleMuted()}
             />
-            <VideoSidebar likes={likes} shares={shares} messages={messages} />
+            <VideoSidebar
+                likes={props.likes}
+                shares={props.shares}
+                messages={props.messages}
+            />
         </div>
     )
 }
