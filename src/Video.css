@@ -7,7 +7,16 @@
 }
 
 .video__player {
-    object-fit: contain;
-    width: 100%;
-    height: 100%;
+    object-fit: contain !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.video-visibility-control {
+    background-color: transparent;
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    right: 50%;
 }

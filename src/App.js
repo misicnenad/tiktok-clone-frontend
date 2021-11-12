@@ -15,7 +15,7 @@ function App() {
         }
 
         fetchPosts()
-    })
+    }, [])
 
     return (
         // BEM naming convention

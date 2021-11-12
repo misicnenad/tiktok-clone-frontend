@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useInView } from 'react-intersection-observer'
 import './Video.css'
 import VideoFooter from './VideoFooter'
 import VideoSidebar from './VideoSidebar'
-import { useInView } from 'react-intersection-observer'
 
 function Video(props) {
     const [isPlaying, setIsPlaying] = useState(true)
@@ -20,14 +20,12 @@ function Video(props) {
         if (inView && isPlaying) {
             videoRef.current.play()
         } else {
-            if (videoRef.current.play) {
-                videoRef.current.pause()
-            }
+            videoRef.current.pause()
         }
     }, [isPlaying, inView])
 
     return (
-        <div className='video' ref={ref}>
+        <div className='video'>
             <video
                 onClick={handleVideoPress}
                 className='video__player'
@@ -36,6 +34,8 @@ function Video(props) {
                 src={props.url}
                 muted={props.muted}
             ></video>
+
+            <div className='video-visibility-control' ref={ref}></div>
 
             <VideoFooter
                 channel={props.channel}
