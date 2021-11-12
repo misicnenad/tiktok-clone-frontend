@@ -1,31 +1,38 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import VisibilitySensor from 'react-visibility-sensor'
 import './Video.css'
 import VideoFooter from './VideoFooter'
 import VideoSidebar from './VideoSidebar'
 
 function Video({ url, channel, description, song, likes, shares, messages }) {
-    const [playing, setPlaying] = useState(false)
+    const [isPlaying, setIsPlaying] = useState(true)
     const videoRef = useRef(null)
 
     const handleVideoPress = () => {
-        if (playing) {
-            videoRef.current.pause()
-            setPlaying(false)
-        } else {
-            videoRef.current.play()
-            setPlaying(true)
-        }
+        setIsPlaying(!isPlaying)
     }
+
+    useEffect(() => {
+        if (isPlaying) {
+            videoRef.current.play()
+        } else {
+            if (videoRef.current.play) {
+                videoRef.current.pause()
+            }
+        }
+    }, [isPlaying])
 
     return (
         <div className='video'>
-            <video
-                onClick={handleVideoPress}
-                className='video__player'
-                loop
-                ref={videoRef}
-                src={url}
-            ></video>
+            <VisibilitySensor onChange={(isVisible) => setIsPlaying(isVisible)}>
+                <video
+                    onClick={handleVideoPress}
+                    className='video__player'
+                    loop
+                    ref={videoRef}
+                    src={url}
+                ></video>
+            </VisibilitySensor>
 
             <VideoFooter
                 channel={channel}
