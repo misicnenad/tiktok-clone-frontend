@@ -16,8 +16,6 @@ function App() {
         fetchPosts()
     }, [])
 
-    console.log(videos)
-
     return (
         // BEM naming convention
         <div className='app'>
