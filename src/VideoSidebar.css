@@ -1,6 +1,6 @@
 .videoSidebar {
     position: absolute;
-    top: 50%;
+    bottom: 100px;
     right: 10px;
     color: white;
     font-size: 2vh;

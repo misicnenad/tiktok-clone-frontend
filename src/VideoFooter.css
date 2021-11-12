@@ -52,3 +52,9 @@
         transform: rotate(360deg);
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .videoFooter__record {
+        height: 40px;
+    }
+}
