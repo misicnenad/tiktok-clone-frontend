@@ -3,7 +3,7 @@ html {
 }
 
 .app {
-    height: 90vh;
+    height: 100vh;
     background-color: black;
     display: grid;
     place-items: center;
